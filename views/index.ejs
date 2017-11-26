@@ -3,19 +3,23 @@
 <head>
     <title>MQTT client</title>
     <link rel='stylesheet' href='stylesheets/bootstrap.min.css'/>
-    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <link rel='stylesheet' href='stylesheets/style.css'/>
 </head>
 <body>
 <div class="row">
-    <div class="row">
-        <div class="col-lg-1">
-            <button class="btn btn-success">ON</button>
-        </div>
-        <div class="col-lg-1">
-            <button class="btn btn-danger">OFF</button>
-        </div>
+    <div class="col-xs-5">
+        <button class="btn btn-success" id="ON">ON</button>
     </div>
+    <div class="col-xs-5">
+        <button class="btn btn-danger" id="OFF">OFF</button>
+    </div>
+    <div class="col-xs-2">
+        <div class="label label-info">55</div>
+    </div>
+    <div class="well-sm"></div>
 </div>
+<script src="javascripts/jquery-3.2.1.min.js"></script>
+<script src="javascripts/socket.io.js"></script>
 <script src="javascripts/bootstrap.min.js"></script>
 <script src="javascripts/moment.js"></script>
 <script src="javascripts/myscript.js"></script>

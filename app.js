@@ -54,12 +54,14 @@ var options = {
     clean: false,
     encoding: 'utf8'
 };
+var io = require('socket.io').listen(5000);
 var client = mqtt.connect('mqtt://192.168.0.112', options);
 client.on('connect', function() { // When connected
     console.log('connected');
     // subscribe to a topic
     client.subscribe('test/topic', function() {
         // when a message arrives, do something with it
+        // socket.emit('mqtt', {topic: 'test/topic', payload: 'OFF'});
     });
 
     // publish a message to a topic
@@ -71,9 +73,10 @@ client.on('connect', function() { // When connected
 
 client.on('message', function(topic, message, packet) {
     console.log("Received '" + message + "' on '" + topic + "'");
+    io.sockets.emit('mqtt',{'topic':String(topic),
+        'payload':String(message)});
 });
 
-var io = require('socket.io').listen(5000);
 
 io.sockets.on('connection', function (socket) {
     socket.on('publish', function (data) {
@@ -81,5 +84,18 @@ io.sockets.on('connection', function (socket) {
         console.log('Publish to '+ data.payload);
     });
 });
+
+var intervalID = setInterval(function()
+{
+    var exec = require('child_process').exec;
+    var cmd = 'cat /sys/class/thermal/thermal_zone0/temp';
+
+    exec(cmd, function(error, stdout, stderr) {
+
+        var tempString = "Temp: " + stdout + "°C";
+        io.sockets.emit('temperature',{'temp':tempString});
+    });
+
+}, 1000);
 
 module.exports = app;
