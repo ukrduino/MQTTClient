@@ -1,5 +1,5 @@
 $(document ).ready(function () {
-    var socket = io.connect('http://localhost:5000');
+    var socket = io.connect('http://192.168.0.112:5000');
     socket.on('connect', function () {
         $("#ON").click(function () {
             socket.emit('publish', {topic: 'test/topic', payload: 'ON'});

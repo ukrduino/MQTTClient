@@ -55,7 +55,7 @@ var options = {
     encoding: 'utf8'
 };
 var io = require('socket.io').listen(5000);
-var client = mqtt.connect('mqtt://192.168.0.112', options);
+var client = mqtt.connect('mqtt://127.0.0.1', options);
 client.on('connect', function() { // When connected
     console.log('connected');
     // subscribe to a topic
