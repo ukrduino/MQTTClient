@@ -1,30 +1,467 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>MQTT client</title>
-    <link rel='stylesheet' href='stylesheets/bootstrap.min.css'/>
-    <link rel='stylesheet' href='stylesheets/style.css'/>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Automation</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/icon" href="images/favicon.ico"/>
+    <!-- Font Awesome -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="stylesheets/bootstrap.min.css" rel="stylesheet">
+    <!-- Slick slider -->
+    <link href="stylesheets/slick.css" rel="stylesheet">
+    <!-- Theme color -->
+    <link id="switcher" href="stylesheets/default-theme.css" rel="stylesheet">
+    <!-- Main Style -->
+    <link href="stylesheets/style.css" rel="stylesheet">
+    <!-- Fonts -->
+
+    <!-- Open Sans for body and title font -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700,800" rel="stylesheet">
+
 </head>
 <body>
-<div class="row">
-    <div class="col-xs-5">
-        <button class="btn btn-success" id="ON">ON</button>
+
+
+<!-- Start Header -->
+<header id="mu-header" class="" role="banner">
+    <div class="mu-header-overlay">
+        <div class="container">
+            <div class="mu-header-area">
+
+                <!-- Start Logo -->
+                <div class="mu-logo-area">
+                    <!-- text based logo -->
+                    <a class="mu-logo" href="#">Orange Pi Zero</a>
+                    <!-- image based logo -->
+                </div>
+                <!-- End Logo -->
+
+                <!-- Start header featured area -->
+                <div class="mu-header-featured-area">
+                    <div class="mu-header-featured-img">
+                        <img src="images/Orange_pi.jpg" alt="OrangePi">
+                    </div>
+
+                    <div class="mu-header-featured-content">
+                        <h1>Welcome To <span><p>Home Automation</p></span></h1>
+                        <p>Home automation platform based on MQTT protocol</p>
+                    </div>
+                </div>
+                <!-- End header featured area -->
+
+            </div>
+        </div>
     </div>
-    <div class="col-xs-5">
-        <button class="btn btn-danger" id="OFF">OFF</button>
+</header>
+<!-- End Header -->
+
+<!-- Start Menu -->
+<button class="mu-menu-btn">
+    <i class="fa fa-bars"></i>
+</button>
+<div class="mu-menu-full-overlay">
+    <div class="mu-menu-full-overlay-inner">
+        <a class="mu-menu-close-btn" href="#"><span class="mu-line"></span></a>
+        <nav class="mu-menu" role="navigation">
+            <ul>
+                <li><a href="#mu-header">Home</a></li>
+                <li><a href="#mu-dashboard">Dashboard</a></li>
+                <!--<li><a href="#mu-video">Video</a></li>-->
+                <li><a href="#mu-hardware">Hardware</a></li>
+                <!--<li><a href="#mu-software">Software</a></li>-->
+                <li><a href="#mu-settings">Settings</a></li>
+            </ul>
+        </nav>
     </div>
-    <div class="col-xs-2">
-        <div class="label label-info">55</div>
-    </div>
-    <div class="well-sm"></div>
 </div>
-<script src="javascripts/jquery-3.2.1.min.js"></script>
-<script src="javascripts/socket.io.js"></script>
+<!-- End Menu -->
+
+
+<!-- Start main content -->
+
+<main role="main">
+
+    <!-- Start Feature -->
+    <section id="mu-dashboard">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="mu-feature-area">
+                        <div class="mu-title-area">
+                            <span class="mu-title-dot"></span>
+                            <h2 class="mu-title">HOME DASHBOARD</h2>
+                            <p>Sensor values are transferred in teal time!</p>
+                        </div>
+
+                        <!-- Start Feature Content -->
+                        <div class="mu-feature-content">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mu-feature-content-left">
+                                        <img class="mu-profile-img" src="images/video_camera.png" alt="video_camera">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mu-feature-content-right">
+
+                                        <!-- Start single feature item -->
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <button class="btn mu-feature-btn" type="button">
+                                                    <i class="fa fa-eye" aria-hidden="true"></i>
+                                                </button>
+                                            </div>
+                                            <div class="media-body">
+                                                <h3 class="media-heading">Surveillance camera</h3>
+                                                <p></p>
+                                            </div>
+                                        </div>
+                                        <!-- End single feature item -->
+
+                                        <!-- Start single feature item -->
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <button class="btn mu-feature-btn" type="button">
+                                                    <i class="fa fa-sliders" aria-hidden="true"></i>
+                                                </button>
+                                            </div>
+                                            <div class="media-body">
+                                                <h3 class="media-heading">Remote control any device</h3>
+                                                <p>You can control air conditioning(on/off, temperature, speed), turn
+                                                    on/off light, open/close water </p>
+                                                <p>Easily set up your fish tank, feed your cat...</p>
+                                                <p>Control 3D printer...</p>
+                                            </div>
+                                        </div>
+                                        <!-- End single feature item -->
+
+                                        <!-- Start single feature item -->
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <button class="btn mu-feature-btn" type="button">
+                                                    <i class="fa fa-tachometer" aria-hidden="true"></i>
+                                                </button>
+                                            </div>
+                                            <div class="media-body">
+                                                <h3 class="media-heading">Real-time sensor data</h3>
+                                                <p>You can see temperature, humidity, light level, AC voltage, DC backup
+                                                    voltage, motion sensor, water sensor on bathroom floor, flowers watering sensors</p>
+                                            </div>
+                                        </div>
+                                        <!-- End single feature item -->
+
+                                        <!-- Start single feature item -->
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <button class="btn mu-feature-btn" type="button" onClick="document.getElementById('mu-settings').scrollIntoView({ behavior: 'smooth' })">
+                                                    <i class="fa fa-cogs" aria-hidden="true"></i>
+                                                </button>
+                                            </div>
+                                            <div class="media-body">
+                                                <h3 class="media-heading">Easy remote sensor/device settings</h3>
+                                                <p>Fast change sensor/device settings without programming them again(web UI
+                                                    setting)</p>
+                                            </div>
+                                        </div>
+                                        <!-- End single feature item -->
+
+                                        <!-- Start single feature item -->
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <button class="btn mu-feature-btn" type="button">
+                                                    <i class="fa fa-area-chart" aria-hidden="true"></i>
+                                                </button>
+                                            </div>
+                                            <div class="media-body">
+                                                <h3 class="media-heading">Statistics</h3>
+                                                <p>Store statistics of your environment</p>
+                                            </div>
+                                        </div>
+                                        <!-- End single feature item -->
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Feature Content -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Feature -->
+
+    <!--&lt;!&ndash; Start Video &ndash;&gt;-->
+    <!--<section id="mu-video">-->
+    <!--<div class="mu-video-overlay">-->
+    <!--<div class="container">-->
+    <!--<div class="row">-->
+    <!--<div class="col-md-12">-->
+    <!--<div class="mu-video-area">-->
+    <!--<h2>Watch Promo Video</h2>-->
+    <!--<a class="mu-video-play-btn" href="#"><i class="fa fa-play" aria-hidden="true"></i></a>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+
+    <!--&lt;!&ndash; Start Video content &ndash;&gt;-->
+    <!--<div class="mu-video-content">-->
+    <!--<div class="mu-video-iframe-area">-->
+    <!--<a class="mu-video-close-btn" href="#"><i class="fa fa-times" aria-hidden="true"></i></a>-->
+    <!--<iframe class="mu-video-iframe" width="854" height="480" src="https://www.youtube.com/embed/9r40_ffCZ_I" frameborder="0" allowfullscreen></iframe> -->
+    <!--</div>-->
+    <!--</div>-->
+    <!--&lt;!&ndash; End Video content &ndash;&gt;-->
+
+    <!--</section>-->
+    <!--&lt;!&ndash; End Video &ndash;&gt;-->
+
+    <!-- Start Hardware -->
+    <section id="mu-hardware">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="mu-apps-screenshot-area">
+                        <div class="mu-title-area">
+                            <span class="mu-title-dot"></span>
+                            <h2 class="mu-title">USED HARDWARE</h2>
+                            <p>Mosquito(MQTT-Brocker) and Node.js web server are deployed to Orange Pi Zero (512Mb)</p>
+                            <p>Sensors and relays are built on the top of Witty Cloud(ESP8266 esp12),</p>
+                            <p>ESP8266 + 18650 + OLED module, LOLIN ESP32 OLED module</p>
+                        </div>
+
+
+                        <!-- Start Apps Screenshot Content -->
+                        <div class="mu-apps-screenshot-content">
+
+                            <div class="mu-apps-screenshot-slider">
+
+                                <div class="mu-single-screeshot">
+                                    <img src="images/screenshot/01.jpg" alt="">
+                                </div>
+
+                                <div class="mu-single-screeshot">
+                                    <img src="images/screenshot/02.jpg" alt="">
+                                </div>
+
+                                <div class="mu-single-screeshot">
+                                    <img src="images/screenshot/03.jpg" alt="">
+                                </div>
+
+                                <div class="mu-single-screeshot">
+                                    <img src="images/screenshot/04.jpg" alt="">
+                                </div>
+
+                                <div class="mu-single-screeshot">
+                                    <img src="images/screenshot/05.jpg" alt="">
+                                </div>
+
+                                <div class="mu-single-screeshot">
+                                    <img src="images/screenshot/06.jpg" alt="">
+                                </div>
+
+                                <div class="mu-single-screeshot">
+                                    <img src="images/screenshot/07.jpg" alt="">
+                                </div>
+
+                                <div class="mu-single-screeshot">
+                                    <img src="images/screenshot/08.jpg" alt="08">
+                                </div>
+
+                                <div class="mu-single-screeshot">
+                                    <img src="images/screenshot/09.jpg" alt="09">
+                                </div>
+
+                                <div class="mu-single-screeshot">
+                                    <img src="images/screenshot/10.jpg" alt="10">
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <!-- End Apps Screenshot Content -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Hardware -->
+
+    <!--&lt;!&ndash; Start Software &ndash;&gt;-->
+    <!--<section id="mu-software">-->
+    <!--<div class="container">-->
+    <!--<div class="row">-->
+    <!--<div class="col-md-12">-->
+    <!--<div class="mu-download-area">-->
+
+    <!--<div class="mu-title-area">-->
+    <!--<h2 class="mu-title">GET THE APP</h2>-->
+    <!--<span class="mu-title-dot"></span>-->
+    <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis unde, ut sapiente et voluptatum facilis consectetur incidunt provident asperiores at necessitatibus nulla sequi voluptas libero quasi explicabo veritatis minima porro.</p>-->
+    <!--</div>-->
+
+
+    <!--<div class="mu-download-content">-->
+    <!--<a class="mu-apple-btn" href="#"><i class="fa fa-apple"></i><span>apple store</span></a>-->
+    <!--<a class="mu-google-btn" href="#"><i class="fa fa-android"></i><span>google play</span></a>-->
+    <!--<a class="mu-windows-btn" href="#"><i class="fa fa-windows"></i><span>windows store</span></a>-->
+    <!--</div>-->
+
+
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</section>-->
+    <!-- End Software -->
+
+    <!-- Start Settings -->
+    <section id="mu-settings">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="mu-faq-area">
+                        <div class="mu-title-area">
+                            <span class="mu-title-dot"></span>
+                            <h2 class="mu-title">Sensor settings</h2>
+                        </div>
+
+
+                        <div class="mu-faq-content">
+                            <div class="panel-group" id="accordion">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+                                               aria-expanded="true">
+                                                <span class="fa fa-minus"></span> Fish tank settings...
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseOne" class="panel-collapse collapse in">
+                                        <div class="panel-body">
+                                            Add settings of fish tank here
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                                <span class="fa fa-plus"></span> Coffee machine settings...
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseTwo" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            Add settings of coffee machine here
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                                <span class="fa fa-plus"></span> Does it cost anything to become a
+                                                member?
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseThree" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
+                                            richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard
+                                            dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon
+                                            tempor, sunt aliqua put a bird on it squid single-origin coffee nulla
+                                            assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore
+                                            wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher
+                                            vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic
+                                            synth nesciunt you probably haven't heard of them accusamus labore
+                                            sustainable VHS.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                                                <span class="fa fa-plus"></span> What is your policy regarding privacy?
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseFour" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
+                                            richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard
+                                            dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon
+                                            tempor, sunt aliqua put a bird on it squid single-origin coffee nulla
+                                            assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore
+                                            wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher
+                                            vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic
+                                            synth nesciunt you probably haven't heard of them accusamus labore
+                                            sustainable VHS.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+                                                <span class="fa fa-plus"></span> Are there more help resources
+                                                available?
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseFive" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
+                                            richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard
+                                            dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon
+                                            tempor, sunt aliqua put a bird on it squid single-origin coffee nulla
+                                            assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore
+                                            wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher
+                                            vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic
+                                            synth nesciunt you probably haven't heard of them accusamus labore
+                                            sustainable VHS.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Settings -->
+
+</main>
+
+<!-- End main content -->
+
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<!-- Bootstrap -->
 <script src="javascripts/bootstrap.min.js"></script>
-<script src="javascripts/moment.js"></script>
-<script src="javascripts/myscript.js"></script>
+<!-- Slick slider -->
+<script type="text/javascript" src="javascripts/slick.min.js"></script>
+<!-- Custom js -->
+<script type="text/javascript" src="javascripts/custom.js"></script>
 </body>
 </html>
-<!--https://stackoverflow.com/questions/41685299/mqtt-client-not-working-->
-<!--https://blog.risingstack.com/getting-started-with-nodejs-and-mqtt/-->
-<!--https://npm.runkit.com-->
